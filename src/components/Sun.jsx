@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import { RigidBody } from '@react-three/rapier'
 
 export const Sun = () => {

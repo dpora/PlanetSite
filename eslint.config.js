@@ -37,6 +37,37 @@ export default [
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': 'warn',
       'react/prop-types': 'off',
+      'react/no-unknown-property': [
+        'error',
+        {
+          ignore: [
+            // React Three Fiber properties
+            'attach',
+            'args',
+            'position',
+            'rotation',
+            'scale',
+            'intensity',
+            'color',
+            'wireframe',
+            'material',
+            'geometry',
+            'object',
+            'dispose',
+            'userData',
+            'colliders',
+            'type',
+            'makeDefault',
+            'maxDistance',
+            'minDistance',
+            'far',
+            'luminanceThreshold',
+            'luminanceSmoothing',
+            'height',
+            'gravity'
+          ]
+        }
+      ],
     },
   },
 ];
