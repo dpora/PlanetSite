@@ -19,10 +19,10 @@ export const BorderComponent = () => {
           preserveAspectRatio="none"
       >
 
-        <path d="M1.5 424V37L38.5 1.5H411.5M34 732.5C34 672.75 34 579.5 34 579.5L1.5 560V771.5L34 798.5H331L370 838.5H411.5" stroke="#69D88E" stroke-width="3"/>
-        <path d="M3.5 790L24 811.5V837.5" stroke="#69D88E" stroke-width="3"/>
-        <path d="M362 50L333 19.5H42.5L17.5 44.5V373" stroke="#69D88E" stroke-width="3"/>
-        <path d="M345 838.5L320.5 811.5H34V838.5H345Z" fill="#69D88E" fill-opacity="0.5" stroke="#69D88E" stroke-width="3"/>
+        <path d="M1.5 424V37L38.5 1.5H411.5M34 732.5C34 672.75 34 579.5 34 579.5L1.5 560V771.5L34 798.5H331L370 838.5H411.5" stroke="#69D88E" strokeWidth="3"/>
+        <path d="M3.5 790L24 811.5V837.5" stroke="#69D88E" strokeWidth="3"/>
+        <path d="M362 50L333 19.5H42.5L17.5 44.5V373" stroke="#69D88E" strokeWidth="3"/>
+        <path d="M345 838.5L320.5 811.5H34V838.5H345Z" fill="#69D88E" fillOpacity="0.5" stroke="#69D88E" strokeWidth="3"/>
       </svg>
 
       {/* Middle section - responsive width */}
@@ -96,7 +96,7 @@ export const InfoComponent = () => {
           <path id="infoPanelPath" d="M158 76.75H79.8919L73 82.75V614.75L61 716.75V735.75L81.4887 752.75H238" />
           <path id="infoVerticalPath" d="M338 82.75V104.25L345 110.75V745.75" />
         </defs>
-        <path d="M84.8571 737.755L74 727.263V83.2459L80.2857 77.75H304.857L317.429 89.741V219.644L304.857 230.136V721.268L318 732.759L304.857 744.75H254.571L244.857 737.755H84.8571Z" fill="#3A6D4B" fill-opacity="0.5" />
+        <path d="M84.8571 737.755L74 727.263V83.2459L80.2857 77.75H304.857L317.429 89.741V219.644L304.857 230.136V721.268L318 732.759L304.857 744.75H254.571L244.857 737.755H84.8571Z" fill="#3A6D4B" fillOpacity="0.5" />
         <path d="M158 76.75H79.8919L73 82.75V614.75" stroke="#69D88E" strokeWidth="3" />
         <path d="M177.544 51.75H299.166L330 79.2308V746.266L304.305 768.75H250.631L239.211 759.756H141" stroke="#69D88E" strokeWidth="3" />
         <path d="M61 716.75V735.75L81.4887 752.75H238" stroke="#69D88E" strokeWidth="3" />

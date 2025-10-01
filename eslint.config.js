@@ -64,7 +64,10 @@ export default [
             'luminanceThreshold',
             'luminanceSmoothing',
             'height',
-            'gravity'
+            'gravity',
+            //three.js properties'
+            'distance',
+            'decay',
           ]
         }
       ],
