@@ -25,7 +25,7 @@ export const ErrorFallback = ({ error, resetErrorBoundary }) => {
             Home
           </a>
         </div>
-        <div>An error happened. Contact support please!</div>
+        <div>An error happened. What did you do?</div>
       </div>
     </div>
   );

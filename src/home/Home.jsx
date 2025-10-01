@@ -1,9 +1,12 @@
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
-import { SpaceScene } from '../components/SpaceScene'
-import { CallComponent, HighTechComponent, InfoComponent, BorderComponent } from '../components/SvgHud'
-import { AnimatedLightOrb } from '../components/AnimatedLightOrb'
+import { SpaceScene } from '../components/Space/SpaceScene'
+import { CallComponent } from '../components/HighTechUI/CallComponent'
+import { HighTechComponent } from '../components/HighTechUI/HighTechComponent'
+import { InfoComponent}  from '../components/HighTechUI/InfoComponent'
+import { BorderComponent } from '../components/HighTechUI/BorderComponent'
+import { AnimatedLightOrb } from '../components/HighTechUI/AnimatedLightOrb'
 
 export const Home = () => (
   <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
