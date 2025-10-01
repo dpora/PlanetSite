@@ -3,6 +3,7 @@ import { OrbitControls } from '@react-three/drei'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
 import { SpaceScene } from '../components/SpaceScene'
 import { CallComponent, HighTechComponent, InfoComponent, BorderComponent } from '../components/SvgHud'
+import { AnimatedLightOrb } from '../components/AnimatedLightOrb'
 
 export const Home = () => (
   <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
@@ -10,8 +11,8 @@ export const Home = () => (
       <color attach='background' args={['black']} />
       <ambientLight intensity={0.25} />
 
-      <OrbitControls maxDistance={450} minDistance={50} makeDefault />
-      
+      <OrbitControls maxDistance={450} minDistance={50} makeDefault enableDamping enableRotate enableZoom enablePan={false} />
+
       <SpaceScene />
 
       <EffectComposer>
@@ -23,5 +24,8 @@ export const Home = () => (
     <InfoComponent />
     <HighTechComponent />
     <CallComponent />
+    
+    {/* GSAP Animated Light Orb */}
+    <AnimatedLightOrb />
   </div>
 );
