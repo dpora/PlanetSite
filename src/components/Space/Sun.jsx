@@ -1,5 +1,5 @@
 
-import { useRef } from 'react'
+import { useRef, forwardRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { shaderMaterial } from '@react-three/drei'
 import { extend } from '@react-three/fiber'
@@ -165,7 +165,7 @@ const MagmaMaterial = shaderMaterial(
 
 extend({ MagmaMaterial })
 
-export const Sun = ({ position = [100, 50, -150], scale = 1 }) => {
+export const Sun = forwardRef(({ position = [0, 0, 0], scale = 1 }, ref) => {
   const sunRef = useRef()
   const materialRef = useRef()
 
@@ -173,7 +173,6 @@ export const Sun = ({ position = [100, 50, -150], scale = 1 }) => {
     if (materialRef.current) {
       materialRef.current.time = state.clock.elapsedTime
     }
-    
     // Slower rotation for more realistic magma movement
     if (sunRef.current) {
       sunRef.current.rotation.y += 0.001
@@ -182,9 +181,12 @@ export const Sun = ({ position = [100, 50, -150], scale = 1 }) => {
   })
 
   return (
-    <group position={position}>
+    <group ref={ref} position={position}>
       {/* Magma sun sphere */}
-      <mesh ref={sunRef} scale={[15 * scale, 15 * scale, 15 * scale]}>
+      <mesh 
+        ref={sunRef} 
+        scale={[15 * scale, 15 * scale, 15 * scale]}
+      >
         <sphereGeometry args={[1, 64, 64]} />
         <magmaMaterial ref={materialRef} />
       </mesh>
@@ -199,4 +201,6 @@ export const Sun = ({ position = [100, 50, -150], scale = 1 }) => {
       />
     </group>
   )
-}
+})
+
+Sun.displayName = 'Sun'
