@@ -20,8 +20,6 @@ export const SpaceScene = ({ focusTarget }) => {
     endCameraPos: null,
     endTargetPos: null
   })
-  // store last known positions per planet to compute a simple velocity
-  const lastPositionsRef = useRef({})
 
   // Function to get planet position by name
   const getPlanetPosition = (planetName) => {
@@ -110,7 +108,7 @@ export const SpaceScene = ({ focusTarget }) => {
   }, [focusTarget, camera])
 
   // Continuously update target position for moving planets and handle transitions
-  useFrame((state, delta) => {
+  useFrame(() => {
     if (!controlsRef.current || !currentFocusTarget.current) return
     
     // Handle smooth transitions between planets
