@@ -8,7 +8,7 @@ export const PageWithHeader = ({children}) => (
 );
 
 export const App = () => (
-  <BrowserRouter>
+  <BrowserRouter basename="/PlanetSite">
     <Suspense
       fallback={
         <PageWithHeader>
