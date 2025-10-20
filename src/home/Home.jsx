@@ -8,7 +8,7 @@ import { HighTechComponent } from '../components/HighTechUI/HighTechComponent'
 import { InfoComponent }  from '../components/HighTechUI/InfoComponent'
 import { planetData, sunData } from '../data/solarData'
 import { BorderComponent } from '../components/HighTechUI/BorderComponent'
-import { AnimatedLightOrb } from '../components/HighTechUI/AnimatedLightOrb'
+// import { AnimatedLightOrb } from '../components/HighTechUI/AnimatedLightOrb'
 import { PlanetNavigation } from '../components/HighTechUI/PlanetNavigation'
 // planet data is imported from '../data/solarData'
 
@@ -52,7 +52,7 @@ export const Home = () => {
       />
       
       {/* GSAP Animated Light Orb */}
-      <AnimatedLightOrb />
+      {/* <AnimatedLightOrb /> */}
     </div>
   );
 };
