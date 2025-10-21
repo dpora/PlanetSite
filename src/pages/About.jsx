@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import { BorderComponent } from "../components/HighTechUI/BorderComponent.jsx";
 import { RoutePaths } from "../general/RoutePaths.jsx";
+import { CursorPet } from "../components/CursorPet.jsx";
 
 export const About = () => {
 	return (
 		<div className="relative min-h-screen w-screen overflow-hidden bg-black text-gray-200">
-			{/* Decorative borders */}
-			<BorderComponent />
+			<CursorPet />
 
 			{/* Content wrapper */}
 			<div className="relative mx-auto flex min-h-screen max-w-5xl flex-col gap-10 px-6 py-16 lg:px-10">
