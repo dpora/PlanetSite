@@ -1,13 +1,62 @@
 import { Link } from "react-router-dom";
 import { RoutePaths } from "../general/RoutePaths.jsx";
 import { CursorPet } from "../components/CursorPet.jsx";
+import { useEffect, useState } from "react";
 
 export const About = () => {
-	return (
-		<div className="relative min-h-screen w-screen overflow-hidden bg-black text-gray-200">
-			<CursorPet />
+	const [showCursorPet, setShowCursorPet] = useState(true);
 
-			{/* Content wrapper */}
+	useEffect(() => {
+		const handleScroll = () => {
+			// Show cursor pet only when at the very top (no scrolling)
+			const scrollPosition = window.scrollY;
+			setShowCursorPet(scrollPosition === 0);
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
+	return (
+		<div className="relative w-screen overflow-x-hidden bg-black text-gray-200" style={{ scrollBehavior: 'smooth' }}>
+			
+
+			{/* Full-screen Hero Section with SVG */}
+			<section className="relative flex h-screen w-screen items-center justify-center overflow-hidden">
+				{showCursorPet && <CursorPet />}
+				<svg 
+					width="1639" 
+					height="805" 
+					viewBox="0 0 1639 805" 
+					fill="none" 
+					xmlns="http://www.w3.org/2000/svg"
+					className="max-h-[80vh] w-auto"
+					style={{ filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))' }}
+				>
+					<path 
+						d="M1148.28 767.047C1832.28 832.047 1736.78 38.0468 1238.78 24.5473C1163.29 22.5008 996.18 40.0468 929.78 38.0468C846.78 35.5468 663.78 0.54685 489.28 2.04685C349.68 3.24685 231.114 63.8802 189.28 94.0469C131.114 128.047 12.3802 235.747 2.78018 394.547C-9.21982 593.047 117.78 741.047 344.28 797.047C388.28 810.5 563.354 795.548 586.28 793.047C723.78 778.047 854.28 531.547 597.78 427.547C549.28 413.047 520.183 427.547 388.28 427.547C344.28 427.547 379.111 371.675 411.28 367.047C480.78 357.047 570.28 339.047 696.28 422.047C822.28 505.047 944.245 747.658 1148.28 767.047Z" 
+						stroke="white" 
+						strokeWidth="3"
+					/>
+					<path 
+						d="M541.78 646.047C594.28 637.047 597.78 588.547 541.78 579.047C497.28 579.047 420.68 597.847 340.28 575.047C239.78 546.547 213.28 484.547 213.28 416.047C213.28 347.547 240.28 199.047 482.78 199.047C676.78 199.047 791.28 284.38 824.28 327.047C932.78 407.047 1105.78 621.547 1256.78 621.547C1553.28 606.047 1550.28 249.047 1256.78 183.547C1170.28 168.547 981.28 221.547 764.28 183.547C552.68 138.347 396.114 171.38 344.28 193.547C63.7803 297.547 155.28 580.047 294.28 618.547C405.48 649.347 505.614 649.714 541.78 646.047Z" 
+						stroke="white" 
+						strokeWidth="3"
+					/>
+				</svg>
+				
+				{/* Scroll indicator */}
+				<div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+					<div className="flex flex-col items-center gap-2 text-white/60">
+						<span className="text-sm">Scroll Down</span>
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M12 5V19M12 19L5 12M12 19L19 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+						</svg>
+					</div>
+				</div>
+			</section>
+
+			{/* About Me Content Section */}
 			<div className="relative mx-auto flex min-h-screen max-w-5xl flex-col gap-10 px-6 py-16 lg:px-10">
 				{/* Hero */}
 				<header className="mt-8">
