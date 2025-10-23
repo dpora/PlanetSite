@@ -54,7 +54,7 @@ export const sunData = {
   order: 0,
   orbitSpeed: 0,
   rotationSpeed: 0.001,
-  link: '/about',
+  link: '/About',
   image: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=400&h=400&fit=crop',
   type: 'star'
 }

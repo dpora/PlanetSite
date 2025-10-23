@@ -1,5 +1,5 @@
 export const RoutePaths = {
   HOME: '/',
-  ABOUT: '/about',
-  CONTACT: '/contact',
+  ABOUT: '/About',
+  CONTACT: '/Contact',
 };
