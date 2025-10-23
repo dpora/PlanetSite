@@ -1,17 +1,51 @@
-export const PlanetNavigation = ({ currentIndex, totalItems, onNavigate, objectNames }) => {
+import { useNavigate } from 'react-router-dom'
+import { useRef } from 'react'
+
+export const PlanetNavigation = ({ currentIndex, totalItems, onNavigate, objectLinks, objectsExternal }) => {
+  const navigate = useNavigate()
+  const isNavigatingRef = useRef(false)
+  
   const handlePrevious = () => {
+    if (isNavigatingRef.current) return // Prevent multiple clicks
+    isNavigatingRef.current = true
+    
     const newIndex = currentIndex === 0 ? totalItems - 1 : currentIndex - 1
     onNavigate(newIndex)
+    
+    // Reset after a short delay
+    setTimeout(() => {
+      isNavigatingRef.current = false
+    }, 300)
   }
 
   const handleNext = () => {
+    if (isNavigatingRef.current) return // Prevent multiple clicks
+    isNavigatingRef.current = true
+    
     const newIndex = currentIndex === totalItems - 1 ? 0 : currentIndex + 1
     onNavigate(newIndex)
+    
+    // Reset after a short delay
+    setTimeout(() => {
+      isNavigatingRef.current = false
+    }, 300)
   }
-
+  
+  console.log("Current Index:", currentIndex);
   const handleExplore = () => {
-    // Explore button functionality - can navigate to detail page or trigger action
-    console.log('Explore clicked for:', objectNames[currentIndex])
+    // Navigate to the link for the current object
+    const link = objectLinks[currentIndex]
+    const isExternal = objectsExternal && objectsExternal[currentIndex]
+    
+    if (link) {
+      if (isExternal) {
+        // Open external links in a new tab
+        window.open(link, '_blank', 'noopener,noreferrer')
+      } else {
+        // Use React Router for internal links
+        navigate(link)
+      }
+    }
   }
 
   return (
@@ -69,7 +103,7 @@ export const PlanetNavigation = ({ currentIndex, totalItems, onNavigate, objectN
                 strokeWidth={index === currentIndex ? 2 : 1}
                 onClick={() => onNavigate(index)}
                 style={{ cursor: 'pointer' }}
-                className={`transition-all duration-200 ${index === currentIndex ? 'drop-shadow-lg' : 'hover:fill-[#69D88E]'}`}
+                className={`transition-all duration-10 ${index === currentIndex ? 'drop-shadow-lg' : 'hover:fill-[#69D88E]'}`}
               />
             )
           })}
