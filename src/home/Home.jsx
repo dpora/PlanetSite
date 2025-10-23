@@ -15,13 +15,14 @@ import { PlanetNavigation } from '../components/HighTechUI/PlanetNavigation'
 export const Home = () => {
   // Combine sun and planet data for navigation
   const allObjects = [sunData, ...planetData]
-  const objectNames = allObjects.map(obj => obj.name)
+  const objectLinks = allObjects.map(obj => obj.link)
+  const objectsExternal = allObjects.map(obj => obj.external || false)
   
   const [selectedIndex, setSelectedIndex] = useState(0) // Default to sun (index 0)
   const selectedObject = allObjects[selectedIndex]
   const focusTarget = selectedObject.name
-
   const handleNavigation = (newIndex) => {
+    console.log("SelectedIndex", newIndex);
     setSelectedIndex(newIndex)
   }
 
@@ -48,7 +49,8 @@ export const Home = () => {
         currentIndex={selectedIndex}
         totalItems={allObjects.length}
         onNavigate={handleNavigation}
-        objectNames={objectNames}
+        objectLinks={objectLinks}
+        objectsExternal={objectsExternal}
       />
       
       {/* GSAP Animated Light Orb */}
