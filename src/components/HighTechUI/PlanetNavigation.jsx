@@ -9,78 +9,114 @@ export const PlanetNavigation = ({ currentIndex, totalItems, onNavigate, objectN
     onNavigate(newIndex)
   }
 
+  const handleExplore = () => {
+    // Explore button functionality - can navigate to detail page or trigger action
+    console.log('Explore clicked for:', objectNames[currentIndex])
+  }
+
   return (
     <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 pointer-events-auto" style={{ zIndex: 30 }}>
-      <div className="bg-black bg-opacity-80 border border-cyan-400 rounded-lg p-4 backdrop-blur-sm">
-        <div className="flex items-center gap-4">
-          {/* Previous Button */}
-          <button
-            onClick={handlePrevious}
-            className="w-12 h-12 bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 
-                     rounded-full flex items-center justify-center transition-all duration-200 
-                     shadow-lg hover:shadow-cyan-400/50 border border-cyan-300"
-            aria-label="Previous object"
-          >
-            <svg 
-              className="w-6 h-6 text-white" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
-          {/* Current Object Display */}
-          <div className="text-center min-w-32">
-            <div className="text-lg font-bold text-cyan-400 mb-1">
-              {objectNames[currentIndex]}
-            </div>
-            <div className="text-xs text-gray-400">
-              {currentIndex + 1} of {totalItems}
-            </div>
-          </div>
-
-          {/* Next Button */}
-          <button
-            onClick={handleNext}
-            className="w-12 h-12 bg-gradient-to-r from-cyan-600 to-cyan-500 hover:from-cyan-500 hover:to-cyan-400 
-                     rounded-full flex items-center justify-center transition-all duration-200 
-                     shadow-lg hover:shadow-cyan-400/50 border border-cyan-300"
-            aria-label="Next object"
-          >
-            <svg 
-              className="w-6 h-6 text-white" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
+      <svg width="560" height="200" viewBox="0 0 560 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="glowing-border sdrop-shadow-2xl">
+        {/* Main container background */}
+        <path d="M100 70L50 110V150L100 190H460L510 150V110L460 70L380 70L330 30H230L180 70H100Z" fill="#3A6D4B"/>
+        <path d="M510 90L485 70L510 70V90Z" fill="#3A6D4B"/>
+        <path d="M100 70L50 110V150L100 190H460L510 150V110L460 70L380 70L330 30H230L180 70H100Z" stroke="#69D88E" strokeWidth="3"/>
+        <path d="M510 90L485 70L510 70V90Z" stroke="#69D88E" strokeWidth="3"/>
+        <path d="M50 100L87.5 70M50 90L75 70" stroke="#69D88E" strokeWidth="3"/>
+        <path d="M50 80L62.5 70" stroke="#69D88E" strokeWidth="3"/>
+        
+        {/* Explore button */}
+        <g filter="url(#filter0_d_88_25)" onClick={handleExplore} style={{ cursor: 'pointer' }} className="transition-all hover:opacity-80 active:scale-99">
+          <path d="M205 90L245 60H315L355 90L315 120.059L245 120L205 90Z" fill="#69D88E" fillOpacity="0.5" shapeRendering="crispEdges"/>
+          <path d="M205 90L245 60H315L355 90L315 120.059L245 120L205 90Z" stroke="#69D88E" strokeWidth="5" shapeRendering="crispEdges"/>
+          {/* Explore button text */}
+          <text x="280" y="95" textAnchor="middle" fill="#A2FFC1" fontSize="18" fontWeight="bold" style={
+            { pointerEvents: 'none',
+              fontFamily: 'Orbitron, monospace',
+            }}>
+            VISIT
+          </text>
+        </g>
+        
+        {/* Right button */}
+        <g filter="url(#filter1_d_88_25)" onClick={handleNext} style={{ cursor: 'pointer' }} className="transition-all hover:opacity-80 active:scale-99">
+          <path d="M330 130L370 100H440L480 130L440 160.059L370 160L330 130Z" fill="#69D88E" fillOpacity="0.5" shapeRendering="crispEdges"/>
+          <path d="M330 130L370 100H440L480 130L440 160.059L370 160L330 130Z" stroke="#69D88E" strokeWidth="5" shapeRendering="crispEdges"/>
+          {/* Right button Arrow */}
+          <path d="M410.5 110L435.5 130L410.5 150M393 120L405.5 130L393 140" stroke="#A2FFC1" strokeWidth="5" style={{ pointerEvents: 'none' }}/>
+        </g>
+        
+        {/* Position info container */}
+        <path d="M195 177L240.333 143H319.667L365 177H195Z" fill="#182D1F" stroke="#69D88E" strokeWidth="5"/>
+        
         {/* Indicator dots */}
-        <div className="flex justify-center gap-2 mt-3">
-          {Array.from({ length: totalItems }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => onNavigate(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                index === currentIndex 
-                  ? 'bg-cyan-400 shadow-lg shadow-cyan-400/50' 
-                  : 'bg-gray-600 hover:bg-gray-500'
-              }`}
-              aria-label={`Go to ${objectNames[index]}`}
-            />
-          ))}
-        </div>
-
-        {/* Navigation hint */}
-        <div className="text-center mt-2">
-          <p className="text-xs text-gray-500">Navigate celestial objects</p>
-        </div>
-      </div>
+        <g>
+          {Array.from({ length: totalItems }).map((_, index) => {
+            const spacing = 12
+            const totalWidth = (totalItems - 1) * spacing
+            const startX = 280 - totalWidth / 2
+            const x = startX + index * spacing
+            const y = 160
+            
+            return (
+              <circle
+                key={index}
+                cx={x}
+                cy={y}
+                r={index === currentIndex ? 4 : 3}
+                fill={index === currentIndex ? '#69D88E' : '#3A6D4B'}
+                stroke={index === currentIndex ? '#A2FFC1' : '#69D88E'}
+                strokeWidth={index === currentIndex ? 2 : 1}
+                onClick={() => onNavigate(index)}
+                style={{ cursor: 'pointer' }}
+                className={`transition-all duration-200 ${index === currentIndex ? 'drop-shadow-lg' : 'hover:fill-[#69D88E]'}`}
+              />
+            )
+          })}
+        </g>
+        
+        {/* Left button */}
+        <g filter="url(#filter2_d_88_25)" onClick={handlePrevious} style={{ cursor: 'pointer' }} className="transition-all hover:opacity-80 active:scale-99">
+          <path d="M80 130L120 100H190L230 130L190 160.059L120 160L80 130Z" fill="#69D88E" fillOpacity="0.5" shapeRendering="crispEdges"/>
+          <path d="M80 130L120 100H190L230 130L190 160.059L120 160L80 130Z" stroke="#69D88E" strokeWidth="5" shapeRendering="crispEdges"/>
+          {/* Left button Arrow */}
+          <path d="M150 111L125 131L150 151M167.5 121L155 131L167.5 141" stroke="#A2FFC1" strokeWidth="5" style={{ pointerEvents: 'none' }}/>
+        </g>
+        
+        {/* Filter definitions */}
+        <defs>
+          <filter id="filter0_d_88_25" x="196.833" y="57.5" width="166.331" height="73.0598" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_88_25"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_88_25" result="shape"/>
+          </filter>
+          <filter id="filter1_d_88_25" x="321.833" y="97.5" width="166.331" height="73.0598" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_88_25"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_88_25" result="shape"/>
+          </filter>
+          <filter id="filter2_d_88_25" x="71.8333" y="97.5" width="166.331" height="73.0598" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+            <feOffset dy="4"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feComposite in2="hardAlpha" operator="out"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_88_25"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_88_25" result="shape"/>
+          </filter>
+        </defs>
+      </svg>
     </div>
   )
 }
