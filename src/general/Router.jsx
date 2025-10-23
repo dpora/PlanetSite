@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 
 import { RoutePaths } from "./RoutePaths.jsx";
-import { Home } from "../home/Home.jsx";
+import { Home } from "../pages/Home.jsx";
+import { About } from "../pages/about.jsx";
+import { Contact } from "../pages/Contact.jsx";
 import { NotFound } from "./NotFound.jsx";
 import { Layout } from "./Layout.jsx";
 
@@ -12,6 +14,22 @@ export const Router = () => (
       element={
         <Layout>
           <Home />
+        </Layout>
+      }
+    />
+    <Route
+      path={RoutePaths.ABOUT}
+      element={
+        <Layout>
+          <About />
+        </Layout>
+      }
+    />
+    <Route
+      path={RoutePaths.CONTACT}
+      element={
+        <Layout>
+          <Contact />
         </Layout>
       }
     />

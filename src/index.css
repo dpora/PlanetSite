@@ -1,5 +1,20 @@
 @import 'tailwindcss';
 
+/* Smooth scrolling with easing */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  * {
+    scroll-behavior: smooth;
+  }
+}
+
 @keyframes pulse-glow {
   0%, 100% {
     filter: drop-shadow(0 0 2px #69D88E) drop-shadow(0 0 4px rgba(105, 216, 142, 0.5));
