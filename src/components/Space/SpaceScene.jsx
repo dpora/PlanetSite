@@ -4,6 +4,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { Sun } from './Sun'
 import { Planets } from './Planets'
+import { planetData } from '../../data/solarData'
 
 export const SpaceScene = ({ focusTarget }) => {
   const controlsRef = useRef()
@@ -25,20 +26,11 @@ export const SpaceScene = ({ focusTarget }) => {
   const getPlanetPosition = (planetName) => {
     if (!planetsRef.current) return null
     
-    // Planet order mapping (same as in planetData)
-    const planetOrder = {
-      'Mercury': 1,
-      'Venus': 2,
-      'Earth': 3,
-      'Mars': 4,
-      'Jupiter': 5,
-      'Saturn': 6,
-      'Uranus': 7,
-      'Neptune': 8
-    }
-
-    const order = planetOrder[planetName]
-    if (!order) return null
+    // Get planet order from solarData
+    const planet = planetData.find(p => p.name === planetName)
+    if (!planet) return null
+    
+    const order = planet.order
 
     // Get the actual planet group from the scene
     const planetGroup = planetsRef.current.children[order - 1] // 0-indexed
@@ -70,7 +62,7 @@ export const SpaceScene = ({ focusTarget }) => {
     let endTargetPosition
     let cameraDistance = 35
 
-    if (focusTarget === 'Sun') {
+    if (focusTarget === 'Sun' || focusTarget === 'About Me') {
       endTargetPosition = new THREE.Vector3(0, 0, 0)
       cameraDistance = 45
     } else {
@@ -149,7 +141,7 @@ export const SpaceScene = ({ focusTarget }) => {
     }
     
     // Normal tracking behavior (when not transitioning)
-    if (currentFocusTarget.current === 'Sun') {
+    if (currentFocusTarget.current === 'Sun' || currentFocusTarget.current === 'About Me') {
       // For sun, keep target at center
       const sunPosition = new THREE.Vector3(0, 0, 0)
       controlsRef.current.target.lerp(sunPosition, 0.05)
