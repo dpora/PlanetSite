@@ -3,6 +3,9 @@ import { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
+const ORBIT_SPEED_SCALE = 0.6
+const ROTATION_SPEED_SCALE = 0.6
+
 export const Planet = ({ 
   color, 
   size, 
@@ -17,15 +20,15 @@ export const Planet = ({
   // Calculate orbit radius based on order (distance from sun)
   const orbitRadius = 30 + (order * 25) // Base distance + order multiplier
   
-  useFrame(() => {
+  useFrame((_, delta) => {
     if (orbitRef.current) {
-      // Orbit around the sun
-      orbitRef.current.rotation.y += orbitSpeed * 0.01
+      // Orbit around the sun (orbitSpeed expressed in radians per second)
+      orbitRef.current.rotation.y += orbitSpeed * ORBIT_SPEED_SCALE * delta
     }
     
     if (planetRef.current) {
       // Planet rotation on its own axis
-      planetRef.current.rotation.y += rotationSpeed * 0.01
+      planetRef.current.rotation.y += rotationSpeed * ROTATION_SPEED_SCALE * delta
     }
   })
 
