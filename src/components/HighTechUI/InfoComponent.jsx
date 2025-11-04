@@ -44,7 +44,7 @@ export const InfoComponent = ({ selectedObject = sunData }) => {
           display: 'flex', 
           justifyContent: 'center', 
           alignItems: 'center',
-          marginTop: '18vh', 
+          marginTop: '21.5vh', 
           transform: 'translateX(3%)'
         }}>
           <img 
@@ -86,7 +86,7 @@ export const InfoComponent = ({ selectedObject = sunData }) => {
         {/* Description - Inside bottom container */}
         <div style={{ 
           position: 'absolute',
-          top: '53vh',
+          top: '43vh',
           left: '8vh',
           right: '8vh',
           color: '#ffffff', 

@@ -77,7 +77,7 @@ export const planetData = [
 
 export const sunData = {
   name: 'About Me',
-  description: 'This is a brief description about who I am and what I do. I currently a Senior at Penn State Behrend studying Software Engineering. blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah',
+  description: 'This is a brief description about who I am and what I do. I am currently a Senior at Penn State Behrend studying Software Engineering.',
   color: '#ff6b35',
   size: 15,
   order: 0,
