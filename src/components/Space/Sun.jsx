@@ -194,10 +194,10 @@ export const Sun = forwardRef(({ position = [0, 0, 0], scale = 1 }, ref) => {
       {/* Main light source */}
       <pointLight 
         position={[0, 0, 0]} 
-        intensity={1500 * scale} 
+        intensity={3500 * scale} 
         color="#ff6b35" 
-        distance={250}
-        decay={2}
+        distance={400}
+        decay={1.8}
       />
     </group>
   )
