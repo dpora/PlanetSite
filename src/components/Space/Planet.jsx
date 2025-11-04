@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unknown-property */
-import { useRef } from 'react'
+import { Suspense, useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
+import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three'
 
 const ORBIT_SPEED_SCALE = 0.6
@@ -12,13 +13,25 @@ export const Planet = ({
   order, 
   orbitSpeed, 
   rotationSpeed, 
-  sunPosition = [0, 0, 0]
+  sunPosition = [0, 0, 0],
+  modelUrl,
+  modelScale = 1,
+  modelRotation = [0, 0, 0],
+  modelPosition = [0, 0, 0]
 }) => {
   const planetRef = useRef()
   const orbitRef = useRef()
 
   // Calculate orbit radius based on order (distance from sun)
   const orbitRadius = 30 + (order * 25) // Base distance + order multiplier
+  const hasCustomModel = Boolean(modelUrl)
+  const baseScale = size ?? 1
+
+  useEffect(() => {
+    if (modelUrl) {
+      useGLTF.preload(modelUrl)
+    }
+  }, [modelUrl])
   
   useFrame((_, delta) => {
     if (orbitRef.current) {
@@ -36,17 +49,17 @@ export const Planet = ({
     <group ref={orbitRef} position={sunPosition}>
       {/* Planet positioned at orbit distance */}
       <group position={[orbitRadius, 0, 0]}>
-        <mesh 
-          ref={planetRef}
-          scale={size}
-        >
-          <sphereGeometry args={[1, 32, 32]} />
-          <meshStandardMaterial 
-            color={color}
-            roughness={0.8}
-            metalness={0.2}
-          />
-        </mesh>
+        <group ref={planetRef} scale={baseScale}>
+          {hasCustomModel ? (
+            <Suspense fallback={<DefaultPlanetMesh color={color} />}> 
+              <group scale={modelScale} rotation={modelRotation} position={modelPosition}>
+                <PlanetModel url={modelUrl} />
+              </group>
+            </Suspense>
+          ) : (
+            <DefaultPlanetMesh color={color} />
+          )}
+        </group>
 
         {/* Ambient light for planet visibility */}
         <pointLight 
@@ -70,4 +83,22 @@ export const Planet = ({
       </mesh>
     </group>
   )
+}
+
+const DefaultPlanetMesh = ({ color }) => (
+  <mesh>
+    <sphereGeometry args={[1, 32, 32]} />
+    <meshStandardMaterial 
+      color={color}
+      roughness={0.8}
+      metalness={0.2}
+    />
+  </mesh>
+)
+
+const PlanetModel = ({ url }) => {
+  const gltf = useGLTF(url)
+  const scene = useMemo(() => gltf.scene.clone(true), [gltf.scene])
+
+  return <primitive object={scene} dispose={null} />
 }

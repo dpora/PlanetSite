@@ -1,3 +1,11 @@
+// modelUrl, modelScale, modelRotation, and modelPosition are optional and enable loading glTF/GLB assets per planet.
+const withBase = (path) => {
+  const base = import.meta.env.BASE_URL || '/'
+  const normalizedBase = base.endsWith('/') ? base.slice(0, -1) : base
+  const normalizedPath = path.startsWith('/') ? path.slice(1) : path
+  return `${normalizedBase}/${normalizedPath}`
+}
+
 export const planetData = [
   {
     name: 'BabySweng',
@@ -6,10 +14,12 @@ export const planetData = [
     size: 3.5,
     order: 1,
     orbitSpeed: 0.15,
-    rotationSpeed: 0.002,
+    rotationSpeed: 2,
     link: 'https://github.com/BehrendSpring25/baby-sweng-haven_team22', // Example external link
     external: true, // Flag to indicate external link
-    image: '/PlanetSite/BabySweng.png'
+    image: withBase('BabySweng.png'),
+    modelUrl: withBase('models/BabySweng.glb'),
+    modelRotation: [Math.PI / 2, Math.PI, 0],
   },
   {
     name: 'Venus',
@@ -17,32 +27,51 @@ export const planetData = [
     color: '#FFC649',
     size: 4.0,
     order: 2,
-    orbitSpeed: 0.12,
-    rotationSpeed: -0.0005,
+    orbitSpeed: 0.182,
+    rotationSpeed: -0.5,
     link: '/planets/venus',
-    image: 'https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=400&h=400&fit=crop'
+    image: 'https://images.unsplash.com/photo-1614728263952-84ea256f9679?w=400&h=400&fit=crop',
+    modelUrl: withBase('models/Planet1.glb'),
+    modelScale: 0.2,
   },
   {
-    name: 'Earth',
+    name: 'Plearth',
     description: 'Our home planet, the only known planet with life.',
     color: '#6B93D6',
     size: 4.5,
     order: 3,
     orbitSpeed: 0.1,
     rotationSpeed: 0.05,
-    link: '/planets/earth',
-    image: 'https://images.unsplash.com/photo-1614728894747-a83421789cd6?w=400&h=400&fit=crop'
+    link: '/planets/plearth',
+    image: 'https://images.unsplash.com/photo-1614728894747-a83421789cd6?w=400&h=400&fit=crop',
+    modelUrl: withBase('models/Planet2.glb'),
+    modelScale: 0.2,
   },
   {
-    name: 'Mars',
+    name: 'Jars',
     description: 'The Red Planet, known for its iron oxide surface and polar ice caps.',
     color: '#CD5C5C',
     size: 3.8,
     order: 4,
     orbitSpeed: 0.08,
     rotationSpeed: 0.04,
-    link: '/planets/mars',
-    image: 'https://images.unsplash.com/photo-1614732414444-096040ec8c86?w=400&h=400&fit=crop'
+    link: '/planets/jars',
+    image: 'https://images.unsplash.com/photo-1614732414444-096040ec8c86?w=400&h=400&fit=crop',
+    modelUrl: withBase('models/Planet3.glb'),
+    modelScale: 0.2,
+  },
+  {
+    name: 'Thorg',
+    description: 'The thorg Planet, known for thorgin surface and thorgcaps.',
+    color: '#CD5C5C',
+    size: 3.8,
+    order: 5,
+    orbitSpeed: 0.08,
+    rotationSpeed: 0.04,
+    link: '/planets/thorg',
+    image: 'https://images.unsplash.com/photo-1614732414444-096040ec8c86?w=400&h=400&fit=crop',
+    modelUrl: withBase('models/Planet4.glb'),
+    modelScale: 0.2,
   }
 ]
 
