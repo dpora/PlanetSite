@@ -17,6 +17,10 @@ export const Planets = forwardRef(({ sunPosition = [0, 0, 0] }, ref) => {
           rotationSpeed={planet.rotationSpeed}
           link={planet.link}
           image={planet.image}
+          modelUrl={planet.modelUrl}
+          modelScale={planet.modelScale}
+          modelRotation={planet.modelRotation}
+          modelPosition={planet.modelPosition}
           sunPosition={sunPosition}
         />
       ))}
